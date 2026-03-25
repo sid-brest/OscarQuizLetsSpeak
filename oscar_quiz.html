@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oscar Quiz</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap");
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --gold: #d4af37;
+        --gold-l: #f5d97a;
+        --gold-d: #9a7820;
+        --bg: #080706;
+        --surf: #110e09;
+        --card: #191410;
+        --card2: #221c12;
+        --txt: #ede4cc;
+        --dim: #8a7d60;
+        --green: #27ae60;
+        --red: #c0392b;
+        --white: #faf5e9;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        display: flex;
+        flex-direction: column;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(
+            1px 1px at 12% 18%,
+            rgba(212, 175, 55, 0.35) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 34% 62%,
+            rgba(212, 175, 55, 0.2) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1.5px 1.5px at 55% 9%,
+            rgba(212, 175, 55, 0.28) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 72% 78%,
+            rgba(212, 175, 55, 0.22) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 88% 33%,
+            rgba(212, 175, 55, 0.28) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 22% 87%,
+            rgba(212, 175, 55, 0.18) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 63% 44%,
+            rgba(212, 175, 55, 0.14) 0%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1px 1px at 44% 28%,
+            rgba(212, 175, 55, 0.22) 0%,
+            transparent 100%
+          );
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 35%,
+          rgba(0, 0, 0, 0.72) 100%
+        );
+      }
+
+      #app {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 820px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding: 0 18px;
+      }
+
+      /* HEADER */
+      .hdr {
+        text-align: center;
+        padding: 14px 0 8px;
+        flex-shrink: 0;
+        animation: fadeD 0.7s ease both;
+      }
+      .hdr h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.7rem, 4vw, 2.6rem);
+        font-weight: 900;
+        color: var(--gold);
+        text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        letter-spacing: -0.02em;
+        font-style: normal;
+      }
+      .hdr .sub {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-top: 4px;
+      }
+      .div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px auto;
+        width: 180px;
+      }
+      .div::before,
+      .div::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--gold-d));
+      }
+      .div::after {
+        background: linear-gradient(to left, transparent, var(--gold-d));
+      }
+      .div span {
+        color: var(--gold);
+        font-size: 12px;
+      }
+
+      @keyframes fadeD {
+        from {
+          opacity: 0;
+          transform: translateY(-14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeU {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* SCROLLABLE CONTENT AREA */
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 2px 4px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--gold-d) transparent;
+      }
+      .content::-webkit-scrollbar {
+        width: 4px;
+      }
+      .content::-webkit-scrollbar-thumb {
+        background: var(--gold-d);
+        border-radius: 2px;
+      }
+
+      /* FOOTER */
+      .footer {
+        flex-shrink: 0;
+        text-align: center;
+        padding: 6px 0 8px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: var(--dim);
+        border-top: 1px solid rgba(212, 175, 55, 0.1);
+        z-index: 1;
+      }
+
+      /* PROGRESS */
+      .prog-wrap {
+        margin-bottom: 4px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 2px;
+        height: 3px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold-d), var(--gold));
+        transition: width 0.5s ease;
+      }
+      .prog-lbl {
+        font-family: "DM Mono", monospace;
+        font-size: 0.63rem;
+        color: var(--dim);
+        letter-spacing: 0.18em;
+        text-align: right;
+        margin-bottom: 10px;
+      }
+
+      /* QUESTION CARD */
+      .qcard {
+        background: var(--card);
+        border: 1px solid rgba(212, 175, 55, 0.14);
+        border-radius: 4px;
+        padding: 16px 20px 14px;
+        margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
+        animation: fadeU 0.4s ease both;
+      }
+      .qcard::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .cat {
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold-d);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cat::before {
+        content: "";
+        display: inline-block;
+        width: 14px;
+        height: 1px;
+        background: var(--gold-d);
+      }
+      .qnum {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        position: absolute;
+        right: 16px;
+        top: 8px;
+        color: rgba(212, 175, 55, 0.07);
+        line-height: 1;
+        user-select: none;
+      }
+      .qtxt {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.45;
+        color: var(--white);
+      }
+
+      /* AWARDS BADGES */
+      .awards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .badge {
+        font-family: "DM Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.22);
+        border-radius: 2px;
+        padding: 3px 8px;
+        color: var(--gold-d);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* IMAGE QUESTION */
+      .img-wrap {
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        margin-bottom: 10px;
+        background: var(--card);
+        animation: fadeU 0.4s ease both;
+        position: relative;
+      }
+      .img-placeholder {
+        width: 100%;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+        color: var(--dim);
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        gap: 8px;
+      }
+      .img-placeholder svg {
+        opacity: 0.4;
+      }
+      .img-placeholder span {
+        opacity: 0.6;
+      }
+      .img-wrap img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* AUDIO PLAYER */
+      .audio-wrap {
+        background: var(--card);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 4px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        animation: fadeU 0.4s ease both;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .audio-label {
+        font-family: "DM Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold-d);
+        flex-shrink: 0;
+      }
+      .audio-wrap audio {
+        flex: 1;
+        height: 36px;
+        min-width: 0;
+      }
+      audio::-webkit-media-controls-panel {
+        background: var(--card2);
+      }
+      audio {
+        filter: sepia(20%) saturate(80%) hue-rotate(5deg);
+        width: 100%;
+      }
+      .audio-filename {
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        color: var(--dim);
+        margin-top: 4px;
+        letter-spacing: 0.12em;
+      }
+
+      /* OPTIONS */
+      .opts {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 10px;
+      }
+      .opt {
+        background: var(--card);
+        border: 1px solid rgba(212, 175, 55, 0.12);
+        border-radius: 3px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.18s ease;
+        font-size: 0.95rem;
+        color: var(--txt);
+        animation: fadeU 0.38s ease both;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+      }
+      .opt:nth-child(1) {
+        animation-delay: 0.04s;
+      }
+      .opt:nth-child(2) {
+        animation-delay: 0.09s;
+      }
+      .opt:nth-child(3) {
+        animation-delay: 0.14s;
+      }
+      .opt:nth-child(4) {
+        animation-delay: 0.19s;
+      }
+      .opt:hover:not(:disabled) {
+        background: var(--card2);
+        border-color: rgba(212, 175, 55, 0.38);
+        transform: translateX(4px);
+        color: var(--gold-l);
+      }
+      .opt:disabled {
+        cursor: default;
+        transform: none;
+      }
+      .opt-l {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--gold-d);
+        width: 18px;
+        flex-shrink: 0;
+        font-weight: 500;
+      }
+      .opt.correct {
+        background: rgba(39, 174, 96, 0.1);
+        border-color: var(--green);
+        color: #5eda9e;
+      }
+      .opt.correct .opt-l {
+        color: var(--green);
+      }
+      .opt.wrong {
+        background: rgba(192, 57, 43, 0.1);
+        border-color: var(--red);
+        color: #e57b72;
+      }
+      .opt.wrong .opt-l {
+        color: var(--red);
+      }
+      .opt-icon {
+        margin-left: auto;
+        font-size: 0.95rem;
+      }
+
+      /* FEEDBACK */
+      .fb {
+        border-radius: 3px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        animation: fadeU 0.28s ease both;
+        border-left: 3px solid;
+        font-family: "DM Sans", sans-serif;
+        font-style: normal;
+      }
+      .fb.ok {
+        background: rgba(39, 174, 96, 0.08);
+        border-color: var(--green);
+        color: #7ee8a2;
+      }
+      .fb.bad {
+        background: rgba(192, 57, 43, 0.08);
+        border-color: var(--red);
+        color: #e8a09a;
+      }
+      .fb strong {
+        color: var(--white);
+        font-style: normal;
+      }
+
+      /* NEXT BTN */
+      .nxt {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background: transparent;
+        border: 1px solid var(--gold);
+        border-radius: 3px;
+        color: var(--gold);
+        font-family: "DM Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.22s ease;
+        animation: fadeU 0.45s ease both;
+        margin-bottom: 4px;
+      }
+      .nxt:hover {
+        background: var(--gold);
+        color: var(--bg);
+      }
+
+      /* START PAGE */
+      .start {
+        text-align: center;
+        animation: fadeD 0.65s ease both;
+        padding: 20px 0;
+      }
+      .start p {
+        font-size: 1rem;
+        color: var(--dim);
+        max-width: 480px;
+        margin: 0 auto 20px;
+        line-height: 1.7;
+        font-style: normal;
+      }
+      .stat-row {
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+        margin: 16px 0 24px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        color: var(--dim);
+      }
+      .stat-row .sv {
+        font-size: 1.6rem;
+        font-family: "Playfair Display", serif;
+        color: var(--gold);
+        display: block;
+        margin-bottom: 3px;
+        font-weight: 700;
+      }
+      .start-btn {
+        display: inline-block;
+        padding: 14px 48px;
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        border-radius: 3px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.28s ease;
+      }
+      .start-btn:hover {
+        background: var(--gold);
+        color: var(--bg);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 26px rgba(212, 175, 55, 0.22);
+      }
+
+      /* RESULTS */
+      .results {
+        text-align: center;
+        animation: fadeD 0.55s ease both;
+        padding: 10px 0;
+      }
+      .results h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 4px;
+        font-style: normal;
+      }
+      .sc-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 16px auto;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.08) 0%,
+          transparent 70%
+        );
+        box-shadow: 0 0 36px rgba(212, 175, 55, 0.14);
+      }
+      .sc-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .sc-den {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--dim);
+        letter-spacing: 0.18em;
+        margin-top: 2px;
+      }
+      .verdict {
+        font-size: 1.05rem;
+        color: var(--txt);
+        margin-bottom: 4px;
+        font-style: normal;
+      }
+      .pct {
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--dim);
+        letter-spacing: 0.18em;
+        margin-bottom: 16px;
+      }
+      .rev-grid {
+        display: grid;
+        gap: 5px;
+        margin: 14px 0;
+        text-align: left;
+      }
+      .rev-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 9px 12px;
+        background: var(--card);
+        border-radius: 3px;
+        border-left: 3px solid;
+        font-size: 0.83rem;
+      }
+      .rev-item.ok {
+        border-color: var(--green);
+      }
+      .rev-item.bad {
+        border-color: var(--red);
+      }
+      .rev-q {
+        color: var(--dim);
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+        font-family: "DM Mono", monospace;
+      }
+      .rev-a {
+        color: var(--white);
+        font-style: normal;
+      }
+      .restart {
+        display: inline-block;
+        padding: 13px 40px;
+        background: var(--gold);
+        color: var(--bg);
+        border: none;
+        border-radius: 3px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.22s ease;
+        font-weight: 500;
+        margin-top: 4px;
+      }
+      .restart:hover {
+        background: var(--gold-l);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.28);
+      }
+
+      /* TYPE TAG */
+      .type-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 2px;
+        margin-bottom: 8px;
+      }
+      .type-tag.trailer {
+        background: rgba(255, 80, 80, 0.1);
+        border: 1px solid rgba(255, 80, 80, 0.3);
+        color: #ff8888;
+      }
+      .type-tag.audio {
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        color: var(--gold);
+      }
+      .type-tag.image {
+        background: rgba(100, 180, 255, 0.1);
+        border: 1px solid rgba(100, 180, 255, 0.3);
+        color: #88ccff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="hdr" id="hdr-global">
+        <h1>Oscar Quiz</h1>
+        <div class="sub">Academy Awards · Iconic Films</div>
+        <div class="div"><span>✦</span></div>
+      </div>
+      <div class="content" id="content"></div>
+      <div class="footer">© LET'S SPEAK English Club · All Rights Reserved</div>
+    </div>
+    <script>
+      // ── QUESTION DATA ──────────────────────────────────────────────
+
+      // TYPE: "trailer" — classic film questions with YouTube trailer
+      const Q_TRAILER = [
+        {
+          type: "trailer",
+          year: 1994,
+          title: "Forrest Gump",
+          cat: "Best Picture · Best Actor · Best Director",
+          badges: ["🏆 6 Oscars"],
+          trailer: "bLvqoHBptjg",
+          q: "A man with a low IQ runs across America, meets presidents, and inspires a ping-pong craze. His mother always said life is like a box of chocolates. Name the film.",
+          opts: ["The Green Mile", "Forrest Gump", "Cast Away", "Big"],
+          ans: 1,
+          fact: "Forrest Gump (1994) won 6 Oscars including Best Picture, Director, and Actor. It grossed over $678 million on a $55 million budget.",
+        },
+        {
+          type: "trailer",
+          year: 1997,
+          title: "Titanic",
+          cat: "Best Picture · Record 11 Oscars",
+          badges: ["🏆 11 Oscars"],
+          trailer: "2e-CHekzSiZjrY",
+          q: "A young aristocrat falls for a poor artist aboard a doomed ocean liner on its maiden voyage. James Cameron directed this 1997 epic. Name it.",
+          opts: [
+            "The Poseidon Adventure",
+            "Titanic",
+            "The Perfect Storm",
+            "Master and Commander",
+          ],
+          ans: 1,
+          fact: "Titanic (1997) won 11 Oscars — tying the all-time record held by Ben-Hur. It was the first film to gross over $2.2 billion.",
+        },
+        {
+          type: "trailer",
+          year: 2003,
+          title: "The Lord of the Rings: The Return of the King",
+          cat: "Best Picture · Perfect 11-for-11 Sweep",
+          badges: ["🏆 11 Oscars"],
+          trailer: "r5X-hFf6Bwo",
+          q: "A hobbit destroys a powerful ring in a volcano to save Middle-earth in this epic fantasy conclusion by Peter Jackson. Name the film.",
+          opts: [
+            "The Two Towers",
+            "Eragon",
+            "The Return of the King",
+            "The Hobbit",
+          ],
+          ans: 2,
+          fact: "The Return of the King (2003) won all 11 categories it was nominated in — the only third installment of a franchise to win Best Picture.",
+        },
+        {
+          type: "trailer",
+          year: 2007,
+          title: "The Departed",
+          cat: "Best Picture · Best Director",
+          badges: ["🏆 4 Oscars"],
+          trailer: "r-MiSNsCdQ4",
+          q: "An undercover cop and a mole for the mob each try to expose the other within the Massachusetts State Police. Name this Scorsese crime thriller.",
+          opts: ["Goodfellas", "The Departed", "Heat", "Donnie Brasco"],
+          ans: 1,
+          fact: "The Departed (2006) finally earned Martin Scorsese his first Best Director Oscar after 5 prior nominations. It's a remake of the Hong Kong film Infernal Affairs.",
+        },
+        {
+          type: "trailer",
+          year: 2009,
+          title: "Slumdog Millionaire",
+          cat: "Best Picture · 8 Oscars",
+          badges: ["🏆 8 Oscars"],
+          trailer: "SQ7P5wEI2CA",
+          q: "A teenager from the Mumbai slums appears on India's Who Wants to Be a Millionaire and is suspected of cheating. Name this Danny Boyle film.",
+          opts: [
+            "Lion",
+            "Slumdog Millionaire",
+            "City of God",
+            "The Kite Runner",
+          ],
+          ans: 1,
+          fact: "Slumdog Millionaire (2008) won 8 Oscars on a $15 million budget and nearly went straight to DVD before its theatrical release.",
+        },
+        {
+          type: "trailer",
+          year: 2010,
+          title: "The Hurt Locker",
+          cat: "Best Picture · First Woman – Best Director",
+          badges: ["🏆 6 Oscars"],
+          trailer: "AIbFvqFYRT4",
+          q: "An adrenaline-addicted U.S. Army bomb disposal expert navigates the dangers of the Iraq War. Kathryn Bigelow directed this tense thriller. Name it.",
+          opts: [
+            "Zero Dark Thirty",
+            "American Sniper",
+            "The Hurt Locker",
+            "Jarhead",
+          ],
+          ans: 2,
+          fact: "The Hurt Locker made Kathryn Bigelow the first woman ever to win Best Director. It beat James Cameron's Avatar — which grossed $2.7 billion — in the top categories.",
+        },
+        {
+          type: "trailer",
+          year: 2022,
+          title: "Everything Everywhere All at Once",
+          cat: "Best Picture · 7 Oscars",
+          badges: ["🏆 7 Oscars"],
+          trailer: "wxN1T1uxQ2g",
+          q: "A laundromat owner discovers she must connect with parallel universe versions of herself to save the multiverse — all while being audited by the Internal Revenue Service. Name the film.",
+          opts: [
+            "The One",
+            "Doctor Strange",
+            "Everything Everywhere All at Once",
+            "Coherence",
+          ],
+          ans: 2,
+          fact: "Everything Everywhere All at Once (2022) swept the Oscars with 7 wins including Best Picture, Director, Actress (Michelle Yeoh — the first Asian woman to win), and Supporting Actor and Actress.",
+        },
+        {
+          type: "trailer",
+          year: 2019,
+          title: "Parasite",
+          cat: "Best Picture · First Non-English Winner",
+          badges: ["🏆 4 Oscars"],
+          trailer: "5xH0HfJHsaY",
+          q: "A poor Korean family schemes their way into working for a wealthy household, with darkly comic and violent consequences. Name this Bong Joon-ho film.",
+          opts: ["Burning", "Parasite", "The Handmaiden", "Shoplifters"],
+          ans: 1,
+          fact: "Parasite (2019) became the first non-English-language film to win Best Picture in Oscar's 92-year history, also winning Director, Screenplay, and International Film.",
+        },
+        {
+          type: "trailer",
+          year: 2023,
+          title: "Oppenheimer",
+          cat: "Best Picture · Best Director · Best Actor",
+          badges: ["🏆 7 Oscars"],
+          trailer: "uYPbbksJxIg",
+          q: "The theoretical physicist who led the Manhattan Project and became 'the destroyer of worlds' is profiled in this Christopher Nolan epic. Name it.",
+          opts: [
+            "Einstein",
+            "Manhattan",
+            "The Manhattan Project",
+            "Oppenheimer",
+          ],
+          ans: 3,
+          fact: "Oppenheimer (2023) won 7 Oscars including Best Picture, Director (Nolan's first), Actor (Cillian Murphy), and Supporting Actor (Robert Downey Jr.).",
+        },
+        {
+          type: "trailer",
+          year: 2024,
+          title: "Anora",
+          cat: "Best Picture · Best Director",
+          badges: ["🏆 3 Oscars"],
+          trailer: "GuPkfvxmtdw",
+          q: "A Brooklyn sex worker impulsively marries the son of a Russian oligarch, only for his parents to fly in and annul the marriage. Name this Sean Baker film.",
+          opts: ["Tangerine", "Red Rocket", "Anora", "The Florida Project"],
+          ans: 2,
+          fact: "Anora (2024) won Best Picture, Director, and Screenplay at the 97th Oscars. It's the first film since Parasite to win both the Cannes Palme d'Or and the Academy Award.",
+        },
+      ];
+
+      // TYPE: "audio" — guess the soundtrack
+      // Place audio files in the same folder as index.html
+      // Supported: .mp3, .ogg, .wav
+      const Q_AUDIO = [
+        {
+          type: "audio",
+          title: "The Lion King",
+          cat: "Guess the Soundtrack",
+          badges: ["🏆 Oscar: Best Original Score & Song"],
+          audio: "soundtrack_lion_king.mp3",
+          q: "This iconic Oscar-winning score opens with a dramatic sunrise over the African savanna. Which film does this soundtrack belong to?",
+          opts: ["The Jungle Book", "Aladdin", "The Lion King", "Tarzan"],
+          ans: 2,
+          fact: "The Lion King (1994) won Oscars for Best Original Score (Hans Zimmer) and Best Original Song (Can You Feel the Love Tonight by Elton John). It remains one of Disney's best-loved soundtracks.",
+        },
+        {
+          type: "audio",
+          title: "Soul",
+          cat: "Guess the Soundtrack",
+          badges: ["🏆 Oscar: Best Original Score & Animated Feature"],
+          audio: "soundtrack_soul.mp3",
+          q: "A jazz-drenched score blends piano improvisations with ethereal electronic textures to explore what makes life worth living. This Pixar film won Best Animated Feature and Best Original Score. Name it.",
+          opts: ["Inside Out", "Brave", "Soul", "Onward"],
+          ans: 2,
+          fact: "Soul (2020) won Oscars for Best Animated Feature and Best Original Score. Trent Reznor, Atticus Ross, and Jon Batiste shared the award — an unusual trio of a jazz pianist and two rock composers.",
+        },
+        {
+          type: "audio",
+          title: "Coco",
+          cat: "Guess the Soundtrack",
+          badges: ["🏆 Oscar: Best Original Song & Animated Feature"],
+          audio: "soundtrack_coco.mp3",
+          q: "A tender guitar melody about family and remembrance fills this Pixar celebration of Día de los Muertos. The film won Oscars for Best Animated Feature and Best Original Song. Name it.",
+          opts: ["The Book of Life", "Encanto", "Coco", "Ratatouille"],
+          ans: 2,
+          fact: "Coco (2017) won Best Animated Feature and Best Original Song for 'Remember Me'. The film's music, composed by Michael Giacchino, draws on traditional Mexican son jarocho and mariachi styles.",
+        },
+        {
+          type: "audio",
+          title: "Frozen",
+          cat: "Guess the Soundtrack",
+          badges: ["🏆 Oscar: Best Original Song & Animated Feature"],
+          audio: "soundtrack_frozen.mp3",
+          q: "A soaring power ballad about letting go of fear became the most recognisable Disney song in a generation. This animated film swept the Oscars in 2014. Name it.",
+          opts: ["Tangled", "Brave", "Frozen", "Enchanted"],
+          ans: 2,
+          fact: "Frozen (2013) won Best Animated Feature and Best Original Song for 'Let It Go', performed by Idina Menzel. The song won the Oscar and spent 13 weeks at No.1 on the Billboard charts.",
+        },
+        {
+          type: "audio",
+          title: "Moana",
+          cat: "Guess the Soundtrack",
+          badges: ["🏆 Oscar: Best Original Song nominated"],
+          audio: "soundtrack_moana.mp3",
+          q: "A rousing Polynesian-inspired anthem about a chosen hero who must sail beyond the reef to restore the heart of an ocean goddess. Name this Disney animated film.",
+          opts: ["Lilo & Stitch", "Moana", "Raya", "Oceania"],
+          ans: 1,
+          fact: "Moana (2016) featured songs by Lin-Manuel Miranda and was nominated for Best Original Song ('How Far I'll Go'). Composer Mark Mancina's score weaves Polynesian percussion and chant throughout.",
+        },
+      ];
+
+      // TYPE: "image" — guess the participants / scene
+      // Add your image files to the same folder and update the 'image' field
+      // Add your question text and answer options to each entry
+      const Q_IMAGE = [
+        {
+          type: "image",
+          title: "Picture Question 1",
+          cat: "Guess the Participants",
+          badges: [
+            "📸 Add your image",
+            "✏️ Add your question",
+            "🎬 Oscar Moment",
+          ],
+          image: "image_question_1.jpg",
+          q: "[ADD YOUR QUESTION HERE] — Who are the people in this picture and what is happening?",
+          opts: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+          ans: 0,
+          fact: "[ADD YOUR FUN FACT HERE]",
+        },
+        {
+          type: "image",
+          title: "Picture Question 2",
+          cat: "Guess the Participants",
+          badges: [
+            "📸 Add your image",
+            "✏️ Add your question",
+            "🎬 Oscar Moment",
+          ],
+          image: "image_question_2.jpg",
+          q: "[ADD YOUR QUESTION HERE] — Who are the people in this picture and what is happening?",
+          opts: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+          ans: 0,
+          fact: "[ADD YOUR FUN FACT HERE]",
+        },
+        {
+          type: "image",
+          title: "Picture Question 3",
+          cat: "Guess the Participants",
+          badges: [
+            "📸 Add your image",
+            "✏️ Add your question",
+            "🎬 Oscar Moment",
+          ],
+          image: "image_question_3.jpg",
+          q: "[ADD YOUR QUESTION HERE] — Who are the people in this picture and what is happening?",
+          opts: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+          ans: 0,
+          fact: "[ADD YOUR FUN FACT HERE]",
+        },
+        {
+          type: "image",
+          title: "Picture Question 4",
+          cat: "Guess the Participants",
+          badges: [
+            "📸 Add your image",
+            "✏️ Add your question",
+            "🎬 Oscar Moment",
+          ],
+          image: "image_question_4.jpg",
+          q: "[ADD YOUR QUESTION HERE] — Who are the people in this picture and what is happening?",
+          opts: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+          ans: 0,
+          fact: "[ADD YOUR FUN FACT HERE]",
+        },
+        {
+          type: "image",
+          title: "Picture Question 5",
+          cat: "Guess the Participants",
+          badges: [
+            "📸 Add your image",
+            "✏️ Add your question",
+            "🎬 Oscar Moment",
+          ],
+          image: "image_question_5.jpg",
+          q: "[ADD YOUR QUESTION HERE] — Who are the people in this picture and what is happening?",
+          opts: ["[Option A]", "[Option B]", "[Option C]", "[Option D]"],
+          ans: 0,
+          fact: "[ADD YOUR FUN FACT HERE]",
+        },
+      ];
+
+      // ── COMBINE ALL QUESTIONS ──
+      const ALL_Q = [...Q_TRAILER, ...Q_AUDIO, ...Q_IMAGE];
+
+      const LETTERS = ["A", "B", "C", "D"];
+      let state = "start",
+        cur = 0,
+        score = 0,
+        sel = null,
+        answered = false,
+        history = [],
+        qs = [];
+
+      function shuffle(a) {
+        return [...a].sort(() => Math.random() - 0.5);
+      }
+      function verdict(s, t) {
+        const p = s / t;
+        if (p === 1) return "🏆 Perfect Score — you ARE the Academy.";
+        if (p >= 0.8) return "🎬 Outstanding. You deserve a statuette.";
+        if (p >= 0.6) return "⭐ Impressive — you know your Oscars.";
+        if (p >= 0.4) return "🎟️ Decent. A few more screenings needed.";
+        return "🍿 Time for a movie marathon!";
+      }
+
+      function start() {
+        qs = shuffle(ALL_Q);
+        cur = 0;
+        score = 0;
+        sel = null;
+        answered = false;
+        history = [];
+        state = "quiz";
+        render();
+      }
+      function choose(i) {
+        if (answered) return;
+        sel = i;
+        answered = true;
+        const q = qs[cur];
+        const ok = i === q.ans;
+        if (ok) score++;
+        history.push({
+          title: q.title,
+          q: q.q,
+          ok,
+          chosen: q.opts[i],
+          right: q.opts[q.ans],
+        });
+        render();
+      }
+      function next() {
+        cur++;
+        sel = null;
+        answered = false;
+        if (cur >= qs.length) state = "results";
+        render();
+      }
+      function restart() {
+        state = "start";
+        render();
+      }
+
+      function renderMediaBlock(q) {
+        if (q.type === "trailer") {
+          return `<div style="margin-bottom:10px">
+      <a href="https://www.youtube.com/watch?v=${q.trailer}" target="_blank" class="type-tag trailer" style="text-decoration:none" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">▶ Watch Trailer</a>
+    </div>`;
+        }
+        if (q.type === "audio") {
+          return `<div class="audio-wrap">
+      <div>
+        <div class="type-tag audio" style="margin-bottom:6px">🎵 Listen &amp; Guess</div>
+        <audio controls preload="none">
+          <source src="${q.audio}" type="audio/mpeg">
+          <source src="${q.audio.replace(".mp3", ".ogg")}" type="audio/ogg">
+          Your browser does not support audio.
+        </audio>
+
+      </div>
+    </div>`;
+        }
+        if (q.type === "image") {
+          return `<div class="img-wrap">
+      <div class="type-tag image" style="margin:10px 10px 6px">📸 Guess the Scene</div>
+      <img src="${q.image}" alt="Oscar question image"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        style="width:100%;height:155px;object-fit:cover;display:block">
+      <div class="img-placeholder" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Add image: ${q.image}</span>
+      </div>
+    </div>`;
+        }
+        return "";
+      }
+
+      function render() {
+        const content = document.getElementById("content");
+
+        if (state === "start") {
+          content.innerHTML = `<div class="start">
+      <p>Test your knowledge of Academy Award-winning films, iconic soundtracks, and unforgettable Oscar moments.</p>
+      <div class="stat-row">
+        <div><span class="sv">${ALL_Q.length}</span>QUESTIONS</div>
+        <div><span class="sv">3</span>CATEGORIES</div>
+        <div><span class="sv">30+</span>YEARS</div>
+      </div>
+      <button class="start-btn" onclick="start()">Begin the Ceremony</button>
+    </div>`;
+          return;
+        }
+
+        if (state === "results") {
+          const pct = Math.round((score / qs.length) * 100);
+          content.innerHTML = `<div class="results">
+      <h2>And the results are…</h2>
+      <div class="sc-circle">
+        <div class="sc-num">${score}</div>
+        <div class="sc-den">out of ${qs.length}</div>
+      </div>
+      <div class="verdict">${verdict(score, qs.length)}</div>
+      <div class="pct">${pct}% correct</div>
+      <div class="rev-grid">
+        ${history
+          .map(
+            (h, i) => `<div class="rev-item ${h.ok ? "ok" : "bad"}">
+          <div style="flex-shrink:0;margin-top:1px">${h.ok ? "✅" : "❌"}</div>
+          <div>
+            <div class="rev-q">Q${i + 1} · ${h.title}</div>
+            <div class="rev-a">${h.ok ? h.right : `Chosen: ${h.chosen} — Correct: ${h.right}`}</div>
+          </div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <button class="restart" onclick="restart()">Watch Again</button>
+    </div>`;
+          return;
+        }
+
+        const q = qs[cur];
+        const prog = (cur / qs.length) * 100;
+        content.innerHTML = `
+    <div class="prog-wrap"><div class="prog-fill" style="width:${prog}%"></div></div>
+    <div class="prog-lbl">QUESTION ${cur + 1} OF ${qs.length}</div>
+
+    ${renderMediaBlock(q)}
+
+    <div class="qcard">
+      <div class="cat">${q.cat}</div>
+      <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
+      <div class="qtxt">${q.q}</div>
+      <div class="awards">
+        ${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}
+      </div>
+    </div>
+
+    <div class="opts">
+      ${q.opts
+        .map((o, i) => {
+          let cls = "",
+            icon = "";
+          if (answered) {
+            if (i === q.ans) {
+              cls = "correct";
+              icon = '<span class="opt-icon">✓</span>';
+            } else if (i === sel && i !== q.ans) {
+              cls = "wrong";
+              icon = '<span class="opt-icon">✗</span>';
+            }
+          }
+          return `<button class="opt ${cls}" onclick="choose(${i})" ${answered ? "disabled" : ""}>
+          <span class="opt-l">${LETTERS[i]}</span>${o}${icon}
+        </button>`;
+        })
+        .join("")}
+    </div>
+
+    ${
+      answered
+        ? `
+      <div class="fb ${sel === q.ans ? "ok" : "bad"}">
+        ${
+          sel === q.ans
+            ? `<strong>Correct!</strong> ${q.fact}`
+            : `<strong>Not quite.</strong> The answer was <strong>${q.opts[q.ans]}</strong>. ${q.fact}`
+        }
+      </div>
+      <button class="nxt" onclick="next()">
+        ${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}
+      </button>`
+        : ""
+    }
+  `;
+      }
+      render();
+    </script>
+  </body>
+</html>
