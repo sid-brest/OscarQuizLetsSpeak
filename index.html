@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oscar Quiz</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap");
       *,
       *::before,
       *::after {
@@ -16,13 +16,13 @@
       :root {
         --gold: #d4af37;
         --gold-l: #f5d97a;
-        --gold-d: #9a7820;
+        --gold-d: #b8961e;
         --bg: #080706;
         --surf: #110e09;
         --card: #191410;
         --card2: #221c12;
-        --txt: #ede4cc;
-        --dim: #8a7d60;
+        --txt: #f0e6c8;
+        --dim: #b0a07a;
         --green: #27ae60;
         --red: #c0392b;
         --white: #faf5e9;
@@ -118,7 +118,7 @@
       }
       .hdr h1 {
         font-family: "Playfair Display", serif;
-        font-size: clamp(1.7rem, 4vw, 2.6rem);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
         font-weight: 900;
         color: var(--gold);
         text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
@@ -126,7 +126,8 @@
       }
       .hdr .sub {
         font-family: "DM Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
+        font-weight: 700;
         letter-spacing: 0.3em;
         text-transform: uppercase;
         color: var(--dim);
@@ -151,7 +152,7 @@
       }
       .div span {
         color: var(--gold);
-        font-size: 12px;
+        font-size: 14px;
       }
       @keyframes fadeD {
         from {
@@ -193,7 +194,8 @@
         text-align: center;
         padding: 6px 0 8px;
         font-family: "DM Mono", monospace;
-        font-size: 0.6rem;
+        font-size: 0.68rem;
+        font-weight: 700;
         letter-spacing: 0.2em;
         color: var(--dim);
         border-top: 1px solid rgba(212, 175, 55, 0.1);
@@ -213,7 +215,8 @@
       }
       .prog-lbl {
         font-family: "DM Mono", monospace;
-        font-size: 0.63rem;
+        font-size: 0.72rem;
+        font-weight: 700;
         color: var(--dim);
         letter-spacing: 0.18em;
         text-align: right;
@@ -221,7 +224,7 @@
       }
       .qcard {
         background: var(--card);
-        border: 1px solid rgba(212, 175, 55, 0.14);
+        border: 1px solid rgba(212, 175, 55, 0.2);
         border-radius: 4px;
         padding: 16px 20px 14px;
         margin-bottom: 10px;
@@ -245,8 +248,9 @@
       }
       .cat {
         font-family: "DM Mono", monospace;
-        font-size: 0.6rem;
-        letter-spacing: 0.28em;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
         color: var(--gold-d);
         margin-bottom: 8px;
@@ -268,15 +272,15 @@
         position: absolute;
         right: 16px;
         top: 8px;
-        color: rgba(212, 175, 55, 0.07);
+        color: rgba(212, 175, 55, 0.08);
         line-height: 1;
         user-select: none;
       }
       .qtxt {
         font-family: "Playfair Display", serif;
-        font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+        font-size: clamp(1.05rem, 2.4vw, 1.25rem);
         font-weight: 700;
-        line-height: 1.45;
+        line-height: 1.5;
         color: var(--white);
       }
       .awards {
@@ -287,13 +291,14 @@
       }
       .badge {
         font-family: "DM Mono", monospace;
-        font-size: 0.58rem;
+        font-size: 0.65rem;
+        font-weight: 700;
         letter-spacing: 0.1em;
-        background: rgba(212, 175, 55, 0.08);
-        border: 1px solid rgba(212, 175, 55, 0.22);
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
         border-radius: 2px;
-        padding: 3px 8px;
-        color: var(--gold-d);
+        padding: 4px 10px;
+        color: var(--gold);
         display: flex;
         align-items: center;
         gap: 4px;
@@ -306,6 +311,10 @@
         background: var(--card);
         animation: fadeU 0.4s ease both;
         position: relative;
+        width: 800px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
       .img-placeholder {
         width: 100%;
@@ -317,7 +326,8 @@
         background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
         color: var(--dim);
         font-family: "DM Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.72rem;
+        font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         gap: 8px;
@@ -326,13 +336,7 @@
         opacity: 0.4;
       }
       .img-placeholder span {
-        opacity: 0.6;
-      }
-      .img-wrap {
-        width: 800px;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        opacity: 0.7;
       }
       .img-wrap img {
         width: 840px;
@@ -355,7 +359,8 @@
       }
       .audio-label {
         font-family: "DM Mono", monospace;
-        font-size: 0.62rem;
+        font-size: 0.68rem;
+        font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--gold-d);
@@ -377,20 +382,20 @@
       }
       .opt {
         background: var(--card);
-        border: 1px solid rgba(212, 175, 55, 0.12);
+        border: 1px solid rgba(212, 175, 55, 0.18);
         border-radius: 3px;
-        padding: 10px 14px;
+        padding: 12px 16px;
         text-align: left;
         cursor: pointer;
         display: flex;
         align-items: center;
         gap: 12px;
         transition: all 0.18s ease;
-        font-size: 0.95rem;
+        font-size: 1.05rem;
+        font-weight: 600;
         color: var(--txt);
         animation: fadeU 0.38s ease both;
         font-family: "DM Sans", sans-serif;
-        font-weight: 500;
       }
       .opt:nth-child(1) {
         animation-delay: 0.04s;
@@ -406,7 +411,7 @@
       }
       .opt:hover:not(:disabled) {
         background: var(--card2);
-        border-color: rgba(212, 175, 55, 0.38);
+        border-color: rgba(212, 175, 55, 0.5);
         transform: translateX(4px);
         color: var(--gold-l);
       }
@@ -416,14 +421,14 @@
       }
       .opt-l {
         font-family: "DM Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--gold-d);
-        width: 18px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--gold);
+        width: 20px;
         flex-shrink: 0;
-        font-weight: 500;
       }
       .opt.correct {
-        background: rgba(39, 174, 96, 0.1);
+        background: rgba(39, 174, 96, 0.12);
         border-color: var(--green);
         color: #5eda9e;
       }
@@ -431,7 +436,7 @@
         color: var(--green);
       }
       .opt.wrong {
-        background: rgba(192, 57, 43, 0.1);
+        background: rgba(192, 57, 43, 0.12);
         border-color: var(--red);
         color: #e57b72;
       }
@@ -440,81 +445,31 @@
       }
       .opt-icon {
         margin-left: auto;
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
-
-      /* FREE-TEXT input */
-      .free-wrap {
-        margin-bottom: 10px;
-        animation: fadeU 0.38s ease both;
-      }
-      .free-input {
-        width: 100%;
-        background: var(--card);
-        border: 1px solid rgba(212, 175, 55, 0.22);
-        border-radius: 3px;
-        padding: 10px 14px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.95rem;
-        color: var(--white);
-        resize: none;
-        outline: none;
-        transition: border-color 0.18s ease;
-        min-height: 64px;
-      }
-      .free-input:focus {
-        border-color: rgba(212, 175, 55, 0.55);
-      }
-      .free-input:disabled {
-        opacity: 0.6;
-        cursor: default;
-      }
-      .submit-btn {
-        display: block;
-        width: 100%;
-        padding: 11px;
-        background: transparent;
-        border: 1px solid var(--gold-d);
-        border-radius: 3px;
-        color: var(--gold);
-        font-family: "DM Mono", monospace;
-        font-size: 0.68rem;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.22s ease;
-        margin-bottom: 8px;
-      }
-      .submit-btn:hover {
-        background: rgba(212, 175, 55, 0.12);
-      }
-      .submit-btn:disabled {
-        opacity: 0.4;
-        cursor: default;
-      }
-
       .fb {
         border-radius: 3px;
-        padding: 10px 14px;
+        padding: 12px 16px;
         margin-bottom: 10px;
-        font-size: 0.85rem;
-        line-height: 1.5;
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.6;
         animation: fadeU 0.28s ease both;
         border-left: 3px solid;
         font-family: "DM Sans", sans-serif;
       }
       .fb.ok {
-        background: rgba(39, 174, 96, 0.08);
+        background: rgba(39, 174, 96, 0.1);
         border-color: var(--green);
         color: #7ee8a2;
       }
       .fb.bad {
-        background: rgba(192, 57, 43, 0.08);
+        background: rgba(192, 57, 43, 0.1);
         border-color: var(--red);
         color: #e8a09a;
       }
       .fb.neutral {
-        background: rgba(212, 175, 55, 0.07);
+        background: rgba(212, 175, 55, 0.09);
         border-color: var(--gold-d);
         color: var(--txt);
       }
@@ -524,13 +479,14 @@
       .nxt {
         display: block;
         width: 100%;
-        padding: 12px;
+        padding: 13px;
         background: transparent;
         border: 1px solid var(--gold);
         border-radius: 3px;
         color: var(--gold);
         font-family: "DM Mono", monospace;
-        font-size: 0.68rem;
+        font-size: 0.75rem;
+        font-weight: 700;
         letter-spacing: 0.28em;
         text-transform: uppercase;
         cursor: pointer;
@@ -548,8 +504,9 @@
         padding: 20px 0;
       }
       .start p {
-        font-size: 1rem;
-        color: var(--dim);
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--txt);
         max-width: 480px;
         margin: 0 auto 20px;
         line-height: 1.7;
@@ -560,7 +517,8 @@
         gap: 36px;
         margin: 16px 0 24px;
         font-family: "DM Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.72rem;
+        font-weight: 700;
         letter-spacing: 0.18em;
         color: var(--dim);
       }
@@ -580,7 +538,8 @@
         color: var(--gold);
         border-radius: 3px;
         font-family: "DM Mono", monospace;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 700;
         letter-spacing: 0.32em;
         text-transform: uppercase;
         cursor: pointer;
@@ -630,19 +589,22 @@
       }
       .sc-den {
         font-family: "DM Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.68rem;
+        font-weight: 700;
         color: var(--dim);
         letter-spacing: 0.18em;
         margin-top: 2px;
       }
       .verdict {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
+        font-weight: 600;
         color: var(--txt);
         margin-bottom: 4px;
       }
       .pct {
         font-family: "DM Mono", monospace;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        font-weight: 700;
         color: var(--dim);
         letter-spacing: 0.18em;
         margin-bottom: 16px;
@@ -657,11 +619,12 @@
         display: flex;
         align-items: flex-start;
         gap: 8px;
-        padding: 9px 12px;
+        padding: 10px 14px;
         background: var(--card);
         border-radius: 3px;
         border-left: 3px solid;
-        font-size: 0.83rem;
+        font-size: 0.88rem;
+        font-weight: 500;
       }
       .rev-item.ok {
         border-color: var(--green);
@@ -674,7 +637,8 @@
       }
       .rev-q {
         color: var(--dim);
-        font-size: 0.7rem;
+        font-size: 0.72rem;
+        font-weight: 700;
         margin-bottom: 2px;
         font-family: "DM Mono", monospace;
       }
@@ -689,12 +653,12 @@
         border: none;
         border-radius: 3px;
         font-family: "DM Mono", monospace;
-        font-size: 0.68rem;
+        font-size: 0.72rem;
+        font-weight: 700;
         letter-spacing: 0.28em;
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.22s ease;
-        font-weight: 500;
         margin-top: 4px;
       }
       .restart:hover {
@@ -707,27 +671,28 @@
         align-items: center;
         gap: 5px;
         font-family: "DM Mono", monospace;
-        font-size: 0.6rem;
+        font-size: 0.68rem;
+        font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        padding: 3px 9px;
+        padding: 4px 10px;
         border-radius: 2px;
         margin-bottom: 8px;
       }
       .type-tag.trailer {
         background: rgba(255, 80, 80, 0.1);
         border: 1px solid rgba(255, 80, 80, 0.3);
-        color: #ff8888;
+        color: #ff9999;
       }
       .type-tag.audio {
-        background: rgba(212, 175, 55, 0.1);
-        border: 1px solid rgba(212, 175, 55, 0.3);
+        background: rgba(212, 175, 55, 0.12);
+        border: 1px solid rgba(212, 175, 55, 0.35);
         color: var(--gold);
       }
       .type-tag.image {
-        background: rgba(100, 180, 255, 0.1);
-        border: 1px solid rgba(100, 180, 255, 0.3);
-        color: #88ccff;
+        background: rgba(100, 180, 255, 0.12);
+        border: 1px solid rgba(100, 180, 255, 0.35);
+        color: #99d6ff;
       }
     </style>
   </head>
@@ -742,8 +707,6 @@
       <div class="footer">© LET'S SPEAK English Club · All Rights Reserved</div>
     </div>
     <script>
-      // ── QUESTION DATA ──────────────────────────────────────────────
-
       const Q_TRAILER = [
         {
           type: "trailer",
@@ -801,7 +764,7 @@
           q: "An undercover cop and a mole for the mob each try to expose the other within the Massachusetts State Police. Name this Scorsese crime thriller.",
           opts: ["Goodfellas", "The Departed", "Heat", "Donnie Brasco"],
           ans: 1,
-          fact: "The Departed (2006) finally earned Martin Scorsese his first Best Director Oscar after 5 prior nominations. It's a remake of the Hong Kong film Infernal Affairs.",
+          fact: "The Departed (2006) finally earned Martin Scorsese his first Best Director Oscar after 5 prior nominations.",
         },
         {
           type: "trailer",
@@ -835,7 +798,7 @@
             "Jarhead",
           ],
           ans: 2,
-          fact: "The Hurt Locker made Kathryn Bigelow the first woman ever to win Best Director. It beat James Cameron's Avatar — which grossed $2.7 billion — in the top categories.",
+          fact: "The Hurt Locker made Kathryn Bigelow the first woman ever to win Best Director.",
         },
         {
           type: "trailer",
@@ -844,7 +807,7 @@
           cat: "Best Picture · 7 Oscars",
           badges: ["🏆 7 Oscars"],
           trailer: "wxN1T1uxQ2g",
-          q: "A laundromat owner discovers she must connect with parallel universe versions of herself to save the multiverse — all while being audited by the Internal Revenue Service. Name the film.",
+          q: "A laundromat owner discovers she must connect with parallel universe versions of herself to save the multiverse — all while being audited by the IRS. Name the film.",
           opts: [
             "The One",
             "Doctor Strange",
@@ -852,7 +815,7 @@
             "Coherence",
           ],
           ans: 2,
-          fact: "Everything Everywhere All at Once (2022) swept the Oscars with 7 wins including Best Picture, Director, Actress (Michelle Yeoh — the first Asian woman to win), and Supporting Actor and Actress.",
+          fact: "Everything Everywhere All at Once (2022) swept 7 Oscars including Best Picture and Best Actress for Michelle Yeoh — the first Asian woman to win.",
         },
         {
           type: "trailer",
@@ -864,7 +827,7 @@
           q: "A poor Korean family schemes their way into working for a wealthy household, with darkly comic and violent consequences. Name this Bong Joon-ho film.",
           opts: ["Burning", "Parasite", "The Handmaiden", "Shoplifters"],
           ans: 1,
-          fact: "Parasite (2019) became the first non-English-language film to win Best Picture in Oscar's 92-year history, also winning Director, Screenplay, and International Film.",
+          fact: "Parasite (2019) became the first non-English-language film to win Best Picture in Oscar's 92-year history.",
         },
         {
           type: "trailer",
@@ -896,7 +859,6 @@
           fact: "Anora (2024) won Best Picture, Director, and Screenplay at the 97th Oscars. It's the first film since Parasite to win both the Cannes Palme d'Or and the Academy Award.",
         },
       ];
-
       const Q_AUDIO = [
         {
           type: "audio",
@@ -929,7 +891,7 @@
           q: "A tender guitar melody about family and remembrance fills this Pixar celebration of Día de los Muertos. The film won Oscars for Best Animated Feature and Best Original Song. Name it.",
           opts: ["The Book of Life", "Encanto", "Coco", "Ratatouille"],
           ans: 2,
-          fact: "Coco (2017) won Best Animated Feature and Best Original Song for 'Remember Me'. The music draws on traditional Mexican son jarocho and mariachi styles.",
+          fact: "Coco (2017) won Best Animated Feature and Best Original Song for 'Remember Me'.",
         },
         {
           type: "audio",
@@ -940,7 +902,7 @@
           q: "A soaring power ballad about letting go of fear became the most recognisable Disney song in a generation. This animated film swept the Oscars in 2014. Name it.",
           opts: ["Tangled", "Brave", "Frozen", "Enchanted"],
           ans: 2,
-          fact: "Frozen (2013) won Best Animated Feature and Best Original Song for 'Let It Go', performed by Idina Menzel. The song spent 13 weeks at No.1 on the Billboard charts.",
+          fact: "Frozen (2013) won Best Animated Feature and Best Original Song for 'Let It Go', performed by Idina Menzel.",
         },
         {
           type: "audio",
@@ -954,17 +916,7 @@
           fact: "Moana (2016) featured songs by Lin-Manuel Miranda and was nominated for Best Original Song ('How Far I'll Go').",
         },
       ];
-
-      // ── IMAGE QUESTIONS (9 total, picture1.jpg … picture9.jpg) ──────
-      // subtype:
-      //   "free"    – no options, free-text input, no scoring (just reveal fact)
-      //   "mcq"     – standard multiple-choice (scored)
-      //   "mcq_img" – picture shown, then MCQ about that picture (scored)
-      //   "split"   – Q8: two sub-parts rendered as one card
-      //               part1 = free image-only reveal, part2 = MCQ (scored)
-
       const Q_IMAGE = [
-        // Q1 – Guess what happens (free text, picture1.jpg)
         {
           type: "image",
           subtype: "free",
@@ -975,8 +927,6 @@
           q: "Look at the picture carefully. What is happening here? Describe the scene.",
           fact: "[ADD YOUR FACT about picture1 here]",
         },
-
-        // Q2 – How many Oscars did this actress receive? (picture2.jpg, correct = 2)
         {
           type: "image",
           subtype: "mcq",
@@ -987,10 +937,8 @@
           q: "How many Academy Awards has this actress won throughout her career?",
           opts: ["1 Oscar", "2 Oscars", "4 Oscars", "5 Oscars"],
           ans: 1,
-          fact: "Emma Stone has won 2 Academy Awards — Best Actress for La La Land (2016) and Best Actress for Poor Things (2023). She is one of only a handful of actresses to win the award twice.",
+          fact: "Emma Stone has won 2 Academy Awards — Best Actress for La La Land (2016) and Best Actress for Poor Things (2023).",
         },
-
-        // Q3 – Guess what happens (free text, picture3.jpg)
         {
           type: "image",
           subtype: "free",
@@ -1001,8 +949,6 @@
           q: "Look at the picture carefully. What is happening here? Describe the scene.",
           fact: "[ADD YOUR FACT about picture3 here]",
         },
-
-        // Q4 – Guess what happens (free text, picture4.jpg)
         {
           type: "image",
           subtype: "free",
@@ -1013,8 +959,6 @@
           q: "Look at the picture carefully. What is happening here? Describe the scene.",
           fact: "[ADD YOUR FACT about picture4 here]",
         },
-
-        // Q5 – Guess what happens (free text, picture5.jpg)
         {
           type: "image",
           subtype: "free",
@@ -1025,8 +969,6 @@
           q: "Look at the picture carefully. What is happening here? Describe the scene.",
           fact: "[ADD YOUR FACT about picture5 here]",
         },
-
-        // Q6 – Guess what happens (free text, picture6.jpg)
         {
           type: "image",
           subtype: "free",
@@ -1037,8 +979,6 @@
           q: "Look at the picture carefully. What is happening here? Describe the scene.",
           fact: "[ADD YOUR FACT about picture6 here]",
         },
-
-        // Q7 – One of the most awarded actresses, how many Oscars? (picture7.jpg, correct = 3)
         {
           type: "image",
           subtype: "mcq",
@@ -1049,10 +989,8 @@
           q: "She is one of the most decorated actresses in Oscar history. How many Academy Awards has she won?",
           opts: ["2 Oscars", "3 Oscars", "4 Oscars", "5 Oscars"],
           ans: 1,
-          fact: "Meryl Streep has won 3 Academy Awards — Best Supporting Actress for Kramer vs. Kramer (1979), Best Actress for Sophie's Choice (1982), and Best Actress for The Iron Lady (2011). She holds the record for the most Oscar wins by any actor.",
+          fact: "Meryl Streep has won 3 Academy Awards — Best Supporting Actress for Kramer vs. Kramer (1979), Best Actress for Sophie's Choice (1982), and Best Actress for The Iron Lady (2011).",
         },
-
-        // Q8 – Split: Who is it? (free, picture8.jpg) + How many Oscars? (MCQ, correct = 22)
         {
           type: "image",
           subtype: "split",
@@ -1068,10 +1006,8 @@
           opts: ["2 Oscars", "3 Oscars", "22 Oscars", "4 Oscars"],
           ans: 2,
           fact_mcq:
-            "Walt Disney received 22 Academy Awards — including 4 regular Oscars and a record-breaking 8 consecutive wins — making him the most decorated individual in Oscar history. He was also given a unique honorary Oscar consisting of one full-sized statuette and seven miniature ones for Snow White and the Seven Dwarfs.",
+            "Walt Disney received 22 Academy Awards — including 4 regular Oscars and a record-breaking 8 consecutive wins — making him the most decorated individual in Oscar history.",
         },
-
-        // Q9 – Which film did Leonardo DiCaprio win his 1st Oscar for?
         {
           type: "image",
           subtype: "mcq",
@@ -1087,14 +1023,11 @@
             "The Revenant",
           ],
           ans: 3,
-          fact: "Leonardo DiCaprio finally won his first Oscar for Best Actor for The Revenant (2015), after four previous nominations. He had been nominated for What's Eating Gilbert Grape (1993), The Aviator (2004), Blood Diamond (2006), and The Wolf of Wall Street (2013).",
+          fact: "Leonardo DiCaprio finally won his first Oscar for Best Actor for The Revenant (2015), after four previous nominations.",
         },
       ];
-
-      // ── COMBINE ──
       const ALL_Q = [...Q_TRAILER, ...Q_AUDIO, ...Q_IMAGE];
       const LETTERS = ["A", "B", "C", "D"];
-
       let state = "start",
         cur = 0,
         score = 0,
@@ -1102,8 +1035,8 @@
         answered = false,
         freeText = "",
         history = [],
-        qs = [];
-
+        qs = [],
+        splitStage = 0;
       function shuffle(a) {
         return [...a].sort(() => Math.random() - 0.5);
       }
@@ -1115,7 +1048,6 @@
         if (p >= 0.4) return "🎟️ Decent. A few more screenings needed.";
         return "🍿 Time for a movie marathon!";
       }
-
       function start() {
         qs = shuffle(ALL_Q);
         cur = 0;
@@ -1159,9 +1091,6 @@
         });
         render();
       }
-      // Split Q8: two stages
-      // stage 0 = free (who is it), stage 1 = mcq (how many Oscars)
-      let splitStage = 0;
       function chooseSplit(i) {
         if (answered) return;
         sel = i;
@@ -1197,57 +1126,35 @@
         state = "start";
         render();
       }
-
-      // ── RENDER HELPERS ─────────────────────────────────────────────
-
       function imgBlock(src) {
-        return `<div class="img-wrap">
-          <img src="${src}" alt="Oscar question image"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="img-placeholder" style="display:none">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>${src}</span>
-          </div>
-        </div>`;
+        return `<div class="img-wrap"><img src="${src}" alt="Oscar question image" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>${src}</span></div></div>`;
       }
-
-      // (free-input block removed — free questions show only image + next button)
-
       function optsBlock(q, mode) {
-        // mode: "normal" (standard MCQ), "split" (uses chooseSplit)
         const fn = mode === "split" ? "chooseSplit" : "choose";
-        return `<div class="opts">
-          ${q.opts
-            .map((o, i) => {
-              let cls = "",
-                icon = "";
-              if (answered) {
-                if (i === q.ans) {
-                  cls = "correct";
-                  icon = '<span class="opt-icon">✓</span>';
-                } else if (i === sel && i !== q.ans) {
-                  cls = "wrong";
-                  icon = '<span class="opt-icon">✗</span>';
-                }
+        return `<div class="opts">${q.opts
+          .map((o, i) => {
+            let cls = "",
+              icon = "";
+            if (answered) {
+              if (i === q.ans) {
+                cls = "correct";
+                icon = '<span class="opt-icon">✓</span>';
+              } else if (i === sel && i !== q.ans) {
+                cls = "wrong";
+                icon = '<span class="opt-icon">✗</span>';
               }
-              return `<button class="opt ${cls}" onclick="${fn}(${i})" ${answered ? "disabled" : ""}>
-              <span class="opt-l">${LETTERS[i]}</span>${o}${icon}
-            </button>`;
-            })
-            .join("")}
-        </div>`;
+            }
+            return `<button class="opt ${cls}" onclick="${fn}(${i})" ${answered ? "disabled" : ""}><span class="opt-l">${LETTERS[i]}</span>${o}${icon}</button>`;
+          })
+          .join("")}</div>`;
       }
-
       function feedbackBlock(ok, fact, chosenTxt, rightTxt) {
-        if (ok === null) {
-          // free text reveal
+        if (ok === null)
           return `<div class="fb neutral"><strong>Here's what's happening:</strong> ${fact}</div>`;
-        }
         if (ok)
           return `<div class="fb ok"><strong>Correct!</strong> ${fact}</div>`;
         return `<div class="fb bad"><strong>Not quite.</strong> The answer was <strong>${rightTxt}</strong>. ${fact}</div>`;
       }
-
       function renderMediaBlock(q) {
         if (q.type === "trailer")
           return `<div style="margin-bottom:10px"><a href="https://www.youtube.com/watch?v=${q.trailer}" target="_blank" class="type-tag trailer" style="text-decoration:none" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">▶ Watch Trailer</a></div>`;
@@ -1255,148 +1162,48 @@
           return `<div class="audio-wrap"><div><div class="type-tag audio" style="margin-bottom:6px">🎵 Listen &amp; Guess</div><audio controls preload="none"><source src="${q.audio}" type="audio/mpeg"><source src="${q.audio.replace(".mp3", ".ogg")}" type="audio/ogg">Your browser does not support audio.</audio></div></div>`;
         return "";
       }
-
       function renderQuestion() {
         const q = qs[cur];
         const prog = (cur / qs.length) * 100;
         let body = "";
-
-        // ── TRAILER / AUDIO (unchanged MCQ) ──
         if (q.type === "trailer" || q.type === "audio") {
-          body = `
-            ${renderMediaBlock(q)}
-            <div class="qcard">
-              <div class="cat">${q.cat}</div>
-              <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
-              <div class="qtxt">${q.q}</div>
-              <div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div>
-            </div>
-            ${optsBlock(q, "normal")}
-            ${answered ? feedbackBlock(sel === q.ans, q.fact, q.opts[sel], q.opts[q.ans]) : ""}
-            ${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
-        }
-
-        // ── IMAGE: FREE TEXT (just image + question + next) ──
-        else if (q.subtype === "free") {
-          body = `
-            <div class="type-tag image" style="margin-bottom:8px">📸 Guess the Scene</div>
-            ${imgBlock(q.image)}
-            <div class="qcard">
-              <div class="cat">${q.cat}</div>
-              <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
-              <div class="qtxt">${q.q}</div>
-              <div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div>
-            </div>
-            <button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>`;
-        }
-
-        // ── IMAGE: MCQ ──
-        else if (q.subtype === "mcq") {
-          body = `
-            <div class="type-tag image" style="margin-bottom:8px">📸 Oscar Picture</div>
-            ${imgBlock(q.image)}
-            <div class="qcard">
-              <div class="cat">${q.cat}</div>
-              <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
-              <div class="qtxt">${q.q}</div>
-              <div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div>
-            </div>
-            ${optsBlock(q, "normal")}
-            ${answered ? feedbackBlock(sel === q.ans, q.fact, q.opts[sel], q.opts[q.ans]) : ""}
-            ${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
-        }
-
-        // ── IMAGE: SPLIT (Q8) ──
-        else if (q.subtype === "split") {
+          body = `${renderMediaBlock(q)}<div class="qcard"><div class="cat">${q.cat}</div><div class="qnum">${String(cur + 1).padStart(2, "0")}</div><div class="qtxt">${q.q}</div><div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div></div>${optsBlock(q, "normal")}${answered ? feedbackBlock(sel === q.ans, q.fact, q.opts[sel], q.opts[q.ans]) : ""}${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
+        } else if (q.subtype === "free") {
+          body = `<div class="type-tag image" style="margin-bottom:8px">📸 Guess the Scene</div>${imgBlock(q.image)}<div class="qcard"><div class="cat">${q.cat}</div><div class="qnum">${String(cur + 1).padStart(2, "0")}</div><div class="qtxt">${q.q}</div><div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div></div><button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>`;
+        } else if (q.subtype === "mcq") {
+          body = `<div class="type-tag image" style="margin-bottom:8px">📸 Oscar Picture</div>${imgBlock(q.image)}<div class="qcard"><div class="cat">${q.cat}</div><div class="qnum">${String(cur + 1).padStart(2, "0")}</div><div class="qtxt">${q.q}</div><div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div></div>${optsBlock(q, "normal")}${answered ? feedbackBlock(sel === q.ans, q.fact, q.opts[sel], q.opts[q.ans]) : ""}${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
+        } else if (q.subtype === "split") {
           if (splitStage === 0) {
-            // Part 1: show picture + "Who is it?" — just next button, no input, no fact
-            body = `
-              <div class="type-tag image" style="margin-bottom:8px">📸 Who Is It?</div>
-              ${imgBlock(q.image)}
-              <div class="qcard">
-                <div class="cat">${q.cat}</div>
-                <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
-                <div class="qtxt">${q.q_free}</div>
-                <div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div>
-              </div>
-              <button class="nxt" onclick="submitFreeSplit()">→ NEXT PART</button>`;
+            body = `<div class="type-tag image" style="margin-bottom:8px">📸 Who Is It?</div>${imgBlock(q.image)}<div class="qcard"><div class="cat">${q.cat}</div><div class="qnum">${String(cur + 1).padStart(2, "0")}</div><div class="qtxt">${q.q_free}</div><div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div></div><button class="nxt" onclick="submitFreeSplit()">→ NEXT PART</button>`;
           } else {
-            // Part 2: reveal who + ask MCQ about Oscars count
-            body = `
-              <div class="type-tag image" style="margin-bottom:8px">🏆 How Many Oscars?</div>
-              ${imgBlock(q.image)}
-              <div class="fb neutral" style="margin-bottom:10px"><strong>Answer:</strong> ${q.fact_free}</div>
-              <div class="qcard">
-                <div class="cat">${q.cat}</div>
-                <div class="qnum">${String(cur + 1).padStart(2, "0")}</div>
-                <div class="qtxt">${q.q_mcq}</div>
-                <div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div>
-              </div>
-              ${optsBlock(q, "split")}
-              ${answered ? feedbackBlock(sel === q.ans, q.fact_mcq, q.opts[sel], q.opts[q.ans]) : ""}
-              ${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
+            body = `<div class="type-tag image" style="margin-bottom:8px">🏆 How Many Oscars?</div>${imgBlock(q.image)}<div class="fb neutral" style="margin-bottom:10px"><strong>Answer:</strong> ${q.fact_free}</div><div class="qcard"><div class="cat">${q.cat}</div><div class="qnum">${String(cur + 1).padStart(2, "0")}</div><div class="qtxt">${q.q_mcq}</div><div class="awards">${q.badges.map((b) => `<div class="badge"><span>✦</span>${b}</div>`).join("")}</div></div>${optsBlock(q, "split")}${answered ? feedbackBlock(sel === q.ans, q.fact_mcq, q.opts[sel], q.opts[q.ans]) : ""}${answered ? `<button class="nxt" onclick="next()">${cur + 1 === qs.length ? "→ SEE RESULTS" : "→ NEXT QUESTION"}</button>` : ""}`;
           }
         }
-
-        return `
-          <div class="prog-wrap"><div class="prog-fill" style="width:${prog}%"></div></div>
-          <div class="prog-lbl">QUESTION ${cur + 1} OF ${qs.length}</div>
-          ${body}`;
+        return `<div class="prog-wrap"><div class="prog-fill" style="width:${prog}%"></div></div><div class="prog-lbl">QUESTION ${cur + 1} OF ${qs.length}</div>${body}`;
       }
-
       function render() {
         const content = document.getElementById("content");
-
         if (state === "start") {
-          content.innerHTML = `<div class="start">
-            <p>Test your knowledge of Academy Award-winning films, iconic soundtracks, and unforgettable Oscar moments.</p>
-            <div class="stat-row">
-              <div><span class="sv">${ALL_Q.length}</span>QUESTIONS</div>
-              <div><span class="sv">3</span>CATEGORIES</div>
-              <div><span class="sv">30+</span>YEARS</div>
-            </div>
-            <button class="start-btn" onclick="start()">Begin the Ceremony</button>
-          </div>`;
+          content.innerHTML = `<div class="start"><p>Test your knowledge of Academy Award-winning films, iconic soundtracks, and unforgettable Oscar moments.</p><div class="stat-row"><div><span class="sv">${ALL_Q.length}</span>QUESTIONS</div><div><span class="sv">3</span>CATEGORIES</div><div><span class="sv">30+</span>YEARS</div></div><button class="start-btn" onclick="start()">Begin the Ceremony</button></div>`;
           return;
         }
-
         if (state === "results") {
           const mcqHistory = history.filter((h) => h.type === "mcq");
           const mcqTotal = mcqHistory.length;
           const pct = mcqTotal ? Math.round((score / mcqTotal) * 100) : 0;
-          content.innerHTML = `<div class="results">
-            <h2>And the results are…</h2>
-            <div class="sc-circle">
-              <div class="sc-num">${score}</div>
-              <div class="sc-den">out of ${mcqTotal}</div>
-            </div>
-            <div class="verdict">${verdict(score, mcqTotal)}</div>
-            <div class="pct">${pct}% correct</div>
-            <div class="rev-grid">
-              ${history
-                .map((h, i) => {
-                  if (h.type === "free")
-                    return `<div class="rev-item neutral">
-                  <div style="flex-shrink:0;margin-top:1px">💬</div>
-                  <div><div class="rev-q">Q${i + 1} · ${h.title}</div>
-                  <div class="rev-a">Your answer: ${h.chosen || "—"}</div></div>
-                </div>`;
-                  return `<div class="rev-item ${h.ok ? "ok" : "bad"}">
-                  <div style="flex-shrink:0;margin-top:1px">${h.ok ? "✅" : "❌"}</div>
-                  <div><div class="rev-q">Q${i + 1} · ${h.title}</div>
-                  <div class="rev-a">${h.ok ? h.right : `Chosen: ${h.chosen} — Correct: ${h.right}`}</div></div>
-                </div>`;
-                })
-                .join("")}
-            </div>
-            <button class="restart" onclick="restart()">Watch Again</button>
-          </div>`;
+          content.innerHTML = `<div class="results"><h2>And the results are…</h2><div class="sc-circle"><div class="sc-num">${score}</div><div class="sc-den">out of ${mcqTotal}</div></div><div class="verdict">${verdict(score, mcqTotal)}</div><div class="pct">${pct}% correct</div><div class="rev-grid">${history
+            .map((h, i) => {
+              if (h.type === "free")
+                return `<div class="rev-item neutral"><div style="flex-shrink:0;margin-top:1px">💬</div><div><div class="rev-q">Q${i + 1} · ${h.title}</div><div class="rev-a">Your answer: ${h.chosen || "—"}</div></div></div>`;
+              return `<div class="rev-item ${h.ok ? "ok" : "bad"}"><div style="flex-shrink:0;margin-top:1px">${h.ok ? "✅" : "❌"}</div><div><div class="rev-q">Q${i + 1} · ${h.title}</div><div class="rev-a">${h.ok ? h.right : `Chosen: ${h.chosen} — Correct: ${h.right}`}</div></div></div>`;
+            })
+            .join(
+              "",
+            )}</div><button class="restart" onclick="restart()">Watch Again</button></div>`;
           return;
         }
-
         content.innerHTML = renderQuestion();
       }
-
       render();
     </script>
   </body>
